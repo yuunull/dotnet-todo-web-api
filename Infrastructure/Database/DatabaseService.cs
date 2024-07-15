@@ -6,7 +6,7 @@ public class DatabaseService
 {
     private readonly string _connectionString;
 
-    public DatabaseService(IConfiguration configuration)
+    public DatabaseService()
     {
         _connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection");
     }
