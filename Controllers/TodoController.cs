@@ -1,7 +1,6 @@
-using Dapper;
 using Microsoft.AspNetCore.Mvc;
-using TodoApi.Infrastructure.Database;
 using TodoApi.Models;
+using TodoApi.Services.Todo;
 
 namespace TodoApi.Controllers;
 
@@ -9,23 +8,16 @@ namespace TodoApi.Controllers;
 [Route("[controller]")]
 public class TodoController : ControllerBase
 {
-    private readonly ILogger<TodoController> _logger;
-    private readonly DatabaseService _databaseService;
+    private readonly ITodoService _todoService;
 
-    public TodoController(ILogger<TodoController> logger, DatabaseService databaseService)
+    public TodoController(ITodoService todoService)
     {
-        _logger = logger;
-        _databaseService = databaseService;
+        _todoService = todoService;
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<TodoModel>>> GetList()
+    public async Task<IEnumerable<TodoModel>> GetList()
     {
-        using (var connection = _databaseService.CreateConnection())
-        {
-            var sql = "select * from \"Todo\"";
-            var todos = await connection.QueryAsync<TodoModel>(sql);
-            return Ok(todos);
-        }
+        return await _todoService.GetTodoList();
     }
 }
