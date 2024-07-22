@@ -4,7 +4,7 @@ namespace TodoApi.Services.Todo;
 
 public interface ITodoService
 {
-    Task<IEnumerable<TodoModel>> GetTodoList();
+    Task<IEnumerable<TodoModel>> GetTodoListAsync();
     // Task<TodoModel> GetTodoItemAsync(int id);
     // Task<TodoModel> CreateTodoItemAsync(TodoItem todoItem);
     // Task<TodoModel> UpdateTodoItemAsync(int id, TodoItem todoItem);

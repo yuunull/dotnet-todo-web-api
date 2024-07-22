@@ -18,6 +18,6 @@ public class TodoController : ControllerBase
     [HttpGet]
     public async Task<IEnumerable<TodoModel>> GetList()
     {
-        return await _todoService.GetTodoList();
+        return await _todoService.GetTodoListAsync();
     }
 }

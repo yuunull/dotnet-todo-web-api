@@ -14,7 +14,7 @@ public class TodoRepository : ITodoRepository
         _dbConnection = dbConnection;
     }
 
-    public async Task<IEnumerable<TodoEntity>> GetTodoList()
+    public async Task<IEnumerable<TodoEntity>> GetTodoListAsync()
     {
         var sql = "select * from \"Todo\"";
         var todos = await _dbConnection.QueryAsync<TodoEntity>(sql);
