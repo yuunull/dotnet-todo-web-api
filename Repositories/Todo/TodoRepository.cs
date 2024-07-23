@@ -20,4 +20,11 @@ public class TodoRepository : ITodoRepository
         var todos = await _dbConnection.QueryAsync<TodoEntity>(sql);
         return todos;
     }
+
+    public async Task<TodoEntity> GetTodoAsync(int id)
+    {
+        var sql = "select * from \"Todo\" where \"id\" = @id";
+        var todo = await _dbConnection.QueryFirstOrDefaultAsync<TodoEntity>(sql, new { id = id });
+        return todo;
+    }
 }

@@ -16,8 +16,21 @@ public class TodoController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<TodoModel>> GetList()
+    public async Task<ActionResult<IEnumerable<TodoModel>>> GetList()
     {
-        return await _todoService.GetTodoListAsync();
+        var todoList = await _todoService.GetTodoListAsync();
+        return Ok(todoList);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<TodoModel>> Get(int id)
+    {
+        var todo = await _todoService.GetTodoAsync(id);
+        if(todo == null) 
+        {
+            return NotFound();
+        }
+
+        return todo;
     }
 }

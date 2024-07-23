@@ -22,5 +22,16 @@ public class TodoService : ITodoService
             Completed = todo.Completed
         });
     }
+
+    public async Task<TodoModel?> GetTodoAsync(int id)
+    {
+        var todo = await _todoRepository.GetTodoAsync(id);
+        return todo != null ? new TodoModel
+        {
+            Id = todo.Id,
+            Title = todo.Title,
+            Completed = todo.Completed
+        } : null;
+    }
 }
 
