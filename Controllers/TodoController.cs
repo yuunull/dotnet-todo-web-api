@@ -34,4 +34,16 @@ public class TodoController : ControllerBase
 
         return todo;
     }
+
+    [HttpPost]
+    public async Task<ActionResult<TodoModel>> Create([FromBody] TodoModel todo)
+    {
+        var newTodo = await _todoService.CreateTodoAsync(todo);
+        if (newTodo == null)
+        {
+            return BadRequest();
+        }
+
+        return newTodo;
+    }
 }

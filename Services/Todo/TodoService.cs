@@ -33,5 +33,33 @@ public class TodoService : ITodoService
             Completed = todo.Completed
         } : null;
     }
+
+    public async Task<TodoModel?> CreateTodoAsync(TodoModel todo)
+    {
+        var errors = new List<string>();
+
+        if (string.IsNullOrEmpty(todo.Title))
+        {
+            errors.Add("Title is required");
+        }
+
+        if (todo.Completed)
+        {
+            errors.Add("Invalid completed");
+        }
+
+        if (errors.Any())
+        {
+            throw new ValidationException(errors);
+        }
+
+        var newTodo = await _todoRepository.CreateTodoAsync(todo);
+        return newTodo != null ? new TodoModel
+        {
+            Id = newTodo.Id,
+            Title = newTodo.Title,
+            Completed = newTodo.Completed
+        } : null;
+    }
 }
 
