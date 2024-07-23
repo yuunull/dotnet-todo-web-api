@@ -1,6 +1,8 @@
 
 using System.Data;
+
 using Dapper;
+
 using TodoApi.Infrastructure.Database;
 
 namespace TodoApi.Repositories.Todo;

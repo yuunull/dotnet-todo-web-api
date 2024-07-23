@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+
 using TodoApi.Models;
 using TodoApi.Services.Todo;
 
@@ -26,7 +27,7 @@ public class TodoController : ControllerBase
     public async Task<ActionResult<TodoModel>> Get(int id)
     {
         var todo = await _todoService.GetTodoAsync(id);
-        if(todo == null) 
+        if (todo == null)
         {
             return NotFound();
         }

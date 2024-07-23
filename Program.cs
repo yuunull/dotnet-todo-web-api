@@ -1,4 +1,5 @@
 using dotenv.net;
+
 using TodoApi.Infrastructure.Configure;
 
 var builder = WebApplication.CreateBuilder(args);
