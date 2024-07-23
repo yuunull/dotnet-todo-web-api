@@ -46,4 +46,16 @@ public class TodoController : ControllerBase
 
         return newTodo;
     }
+
+    [HttpPatch]
+    public async Task<ActionResult<TodoModel>> Update([FromBody] TodoModel todo)
+    {
+        var updatedTodo = await _todoService.UpdateTodoAsync(todo);
+        if (updatedTodo == null)
+        {
+            return BadRequest();
+        }
+
+        return updatedTodo;
+    }
 }

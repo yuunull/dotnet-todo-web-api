@@ -37,4 +37,11 @@ public class TodoRepository : ITodoRepository
         var createdTodo = await _dbConnection.QueryFirstOrDefaultAsync<TodoEntity>(sql, new { title = todo.Title, completed = todo.Completed });
         return createdTodo;
     }
+
+    public async Task<TodoEntity?> UpdateTodoAsync(TodoModel todo)
+    {
+        var sql = "update \"Todo\" set \"title\" = @title, \"completed\" = @completed where \"id\" = @id returning *";
+        var updatedTodo = await _dbConnection.QueryFirstOrDefaultAsync<TodoEntity>(sql, new { id = todo.Id, title = todo.Title, completed = todo.Completed });
+        return updatedTodo;
+    }
 }

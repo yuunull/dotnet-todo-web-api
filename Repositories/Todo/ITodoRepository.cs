@@ -8,6 +8,6 @@ public interface ITodoRepository
     Task<IEnumerable<TodoEntity>> GetTodoListAsync();
     Task<TodoEntity?> GetTodoAsync(int id);
     Task<TodoEntity?> CreateTodoAsync(TodoModel todo);
-    // Task<TodoModel> UpdateTodoItemAsync(int id, TodoItem todoItem);
+    Task<TodoEntity?> UpdateTodoAsync(TodoModel todo);
     // Task DeleteTodoItemAsync(int id);
 }
