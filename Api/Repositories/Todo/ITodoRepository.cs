@@ -9,5 +9,5 @@ public interface ITodoRepository
     Task<TodoEntity?> GetTodoAsync(int id);
     Task<TodoEntity?> CreateTodoAsync(CreateRequestDto todo);
     Task<TodoEntity?> UpdateTodoAsync(UpdateRequestDto todo);
-    // Task DeleteTodoItemAsync(int id);
+    Task UpdateCompletedAsync(UpdateCompletedRequestDto todo);
 }

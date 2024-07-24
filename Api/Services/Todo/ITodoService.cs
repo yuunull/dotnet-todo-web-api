@@ -8,5 +8,5 @@ public interface ITodoService
     Task<GetResponseDto?> GetTodoAsync(int id);
     Task<CreateResponseDto?> CreateTodoAsync(CreateRequestDto request);
     Task<UpdateResponseDto?> UpdateTodoAsync(UpdateRequestDto request);
-    // Task DeleteTodoItemAsync(int id);
+    Task UpdateCompletedAsync(UpdateCompletedRequestDto request);
 }

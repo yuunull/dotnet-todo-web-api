@@ -47,7 +47,7 @@ public class TodoController : ControllerBase
         return newTodo;
     }
 
-    [HttpPatch]
+    [HttpPut]
     public async Task<ActionResult<UpdateResponseDto>> Update([FromBody] UpdateRequestDto request)
     {
         var updatedTodo = await _todoService.UpdateTodoAsync(request);
@@ -57,5 +57,12 @@ public class TodoController : ControllerBase
         }
 
         return updatedTodo;
+    }
+
+    [HttpPatch]
+    public async Task<ActionResult> UpdateCompleted([FromBody] UpdateCompletedRequestDto request)
+    {
+        await _todoService.UpdateCompletedAsync(request);
+        return Ok();
     }
 }

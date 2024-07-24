@@ -89,5 +89,22 @@ public class TodoService : ITodoService
             Completed = updatedTodo.Completed
         } : null;
     }
+
+    public async Task UpdateCompletedAsync(UpdateCompletedRequestDto request)
+    {
+        var errors = new List<string>();
+
+        if (request.Id == 0)
+        {
+            errors.Add("Id is required");
+        }
+
+        if (errors.Any())
+        {
+            throw new ValidationException(errors);
+        }
+
+        await _todoRepository.UpdateCompletedAsync(request);
+    }
 }
 
