@@ -17,7 +17,7 @@ namespace Api.Tests.UnitTests.Services
         }
 
         [Fact]
-        public async Task Test1()
+        public async Task GetTodoListAsyncでリストが正常に返却されることの確認()
         {
             // Arrange
             var testData = new List<TodoEntity>
@@ -36,6 +36,20 @@ namespace Api.Tests.UnitTests.Services
             Assert.Equal(testData[0].Title, result.ElementAt(0).Title);
             Assert.Equal(testData[1].Id, result.ElementAt(1).Id);
             Assert.Equal(testData[1].Title, result.ElementAt(1).Title);
+        }
+
+        [Fact]
+        public async Task GetTodoListAsyncでリストがない場合0件で返却されることの確認()
+        {
+            // Arrange
+            var testData = new List<TodoEntity> { };
+            _repositoryMock.Setup(repo => repo.GetTodoListAsync()).ReturnsAsync(testData);
+
+            // Act
+            var result = await _service.GetTodoListAsync();
+
+            // Assert
+            Assert.Equal(0, result.Count());
         }
     }
 }
