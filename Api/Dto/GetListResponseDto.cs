@@ -1,6 +1,6 @@
 namespace TodoApi.Models;
 
-public class TodoModel
+public class GetListResponseDto
 {
     public int Id { get; set; }
 

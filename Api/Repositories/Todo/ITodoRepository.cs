@@ -7,7 +7,7 @@ public interface ITodoRepository
 {
     Task<IEnumerable<TodoEntity>> GetTodoListAsync();
     Task<TodoEntity?> GetTodoAsync(int id);
-    Task<TodoEntity?> CreateTodoAsync(TodoModel todo);
-    Task<TodoEntity?> UpdateTodoAsync(TodoModel todo);
+    Task<TodoEntity?> CreateTodoAsync(CreateRequestDto todo);
+    Task<TodoEntity?> UpdateTodoAsync(UpdateRequestDto todo);
     // Task DeleteTodoItemAsync(int id);
 }

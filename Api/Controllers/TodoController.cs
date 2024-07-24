@@ -17,14 +17,14 @@ public class TodoController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<TodoModel>>> GetList()
+    public async Task<ActionResult<IEnumerable<GetListResponseDto>>> GetList()
     {
         var todoList = await _todoService.GetTodoListAsync();
         return Ok(todoList);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<TodoModel>> Get(int id)
+    public async Task<ActionResult<GetResponseDto>> Get(int id)
     {
         var todo = await _todoService.GetTodoAsync(id);
         if (todo == null)
@@ -36,9 +36,9 @@ public class TodoController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<TodoModel>> Create([FromBody] TodoModel todo)
+    public async Task<ActionResult<CreateResponseDto>> Create([FromBody] CreateRequestDto request)
     {
-        var newTodo = await _todoService.CreateTodoAsync(todo);
+        var newTodo = await _todoService.CreateTodoAsync(request);
         if (newTodo == null)
         {
             return BadRequest();
@@ -48,9 +48,9 @@ public class TodoController : ControllerBase
     }
 
     [HttpPatch]
-    public async Task<ActionResult<TodoModel>> Update([FromBody] TodoModel todo)
+    public async Task<ActionResult<UpdateResponseDto>> Update([FromBody] UpdateRequestDto request)
     {
-        var updatedTodo = await _todoService.UpdateTodoAsync(todo);
+        var updatedTodo = await _todoService.UpdateTodoAsync(request);
         if (updatedTodo == null)
         {
             return BadRequest();
